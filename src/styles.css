@@ -1,0 +1,328 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Ruta Vanta NaturelaX — eco-luxury Himalayan design system.
+ * All colors are oklch tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-forest: var(--forest);
+  --color-deep: var(--deep);
+  --color-earth: var(--earth);
+  --color-sand: var(--sand);
+  --color-mist: var(--mist);
+  --color-snow: var(--snow);
+  --color-gold: var(--gold);
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1.25rem;
+
+  /* Brand palette */
+  --forest: oklch(0.315 0.058 156.5); /* #1B4332 */
+  --deep: oklch(0.194 0.043 156.9); /* #081C15 */
+  --earth: oklch(0.437 0.049 58.6); /* #6B4F3A */
+  --sand: oklch(0.836 0.041 79.5); /* #D8C3A5 */
+  --mist: oklch(0.972 0.006 145); /* #F4F6F3 */
+  --snow: oklch(1 0 0);
+  --gold: oklch(0.742 0.105 87.5); /* #C8A951 */
+
+  --background: var(--snow);
+  --foreground: var(--deep);
+  --card: var(--snow);
+  --card-foreground: var(--deep);
+  --popover: var(--snow);
+  --popover-foreground: var(--deep);
+  --primary: var(--forest);
+  --primary-foreground: var(--snow);
+  --secondary: var(--mist);
+  --secondary-foreground: var(--forest);
+  --muted: var(--mist);
+  --muted-foreground: oklch(0.5 0.02 150);
+  --accent: var(--gold);
+  --accent-foreground: var(--deep);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--snow);
+  --border: oklch(0.906 0.011 145);
+  --input: oklch(0.906 0.011 145);
+  --ring: var(--gold);
+
+  /* Signature gradients */
+  --gradient-sunrise: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--gold) 85%, white),
+    color-mix(in oklab, var(--earth) 70%, var(--sand))
+  );
+  --gradient-forest: linear-gradient(160deg, var(--forest), var(--deep));
+  --gradient-veil: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--deep) 92%, transparent),
+    color-mix(in oklab, var(--deep) 45%, transparent) 45%,
+    color-mix(in oklab, var(--deep) 20%, transparent)
+  );
+
+  --shadow-soft: 0 2px 8px -4px color-mix(in oklab, var(--deep) 14%, transparent),
+    0 18px 48px -24px color-mix(in oklab, var(--deep) 28%, transparent);
+  --shadow-lift: 0 4px 12px -6px color-mix(in oklab, var(--deep) 18%, transparent),
+    0 32px 64px -28px color-mix(in oklab, var(--deep) 36%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--gold) 40%, transparent);
+  }
+}
+
+/* ---------- Utilities ---------- */
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.5rem;
+
+  @media (min-width: 1024px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 5rem;
+
+  @media (min-width: 768px) {
+    padding-block: 8rem;
+  }
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--gold) 80%, var(--earth));
+}
+
+@utility surface-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility glass-card {
+  background: color-mix(in oklab, var(--snow) 10%, transparent);
+  border: 1px solid color-mix(in oklab, var(--snow) 22%, transparent);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 50px;
+  padding: 0.9rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@utility btn-primary {
+  background: var(--gradient-sunrise);
+  color: var(--deep);
+  box-shadow: var(--shadow-soft);
+
+  &:hover {
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility btn-forest {
+  background: var(--forest);
+  color: var(--snow);
+
+  &:hover {
+    background: var(--deep);
+  }
+}
+
+@utility btn-ghost-light {
+  border: 1px solid color-mix(in oklab, var(--snow) 45%, transparent);
+  color: var(--snow);
+
+  &:hover {
+    background: color-mix(in oklab, var(--snow) 14%, transparent);
+  }
+}
+
+@utility media-frame {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+@utility zoom-slow {
+  overflow: hidden;
+
+  & img {
+    transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover img {
+    transform: scale(1.07);
+  }
+}
+
+@utility dark-section {
+  background: var(--gradient-forest);
+  color: var(--snow);
+}
+
+@utility text-gold {
+  color: var(--gold);
+}
+
+@utility text-sand {
+  color: var(--sand);
+}
+
+@utility bg-mist {
+  background-color: var(--mist);
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes rv-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rv-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rv-drift {
+  from {
+    transform: scale(1.06) translateY(0);
+  }
+  to {
+    transform: scale(1.14) translateY(-2%);
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@utility float-slow {
+  animation: rv-float 7s ease-in-out infinite;
+}
+
+@utility ken-burns {
+  animation: rv-drift 22s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
